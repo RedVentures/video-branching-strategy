@@ -1,51 +1,17 @@
-```
-         `@@@:               `@@@:                                                        `@@@:   
-        #@+:;@@             #@+:;@@                                                      #@+:;@@  
-       #@:::::+@       @   #@:::::+@                                                    #@:::::+@
-       @:::::::@;      @@  @:::::::@;                                                   @:::::::@;
-      .@:::::::;@      @@@.@:::::::;@                                                  .@:::::::;@
-      ;@::::::::@@@@@@@@@@@@::::::::@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@::::::::@
-      `@:::::::+@      @@#`@:::::::+@                                                  `@:::::::+@
-       @:::::::@`      @#  @:::::::@`                                                   @:::::::@`
-       .@:::::@#       #   .@:::::@@:                                               @@@@@@:::::@#
-        .@@@@@#       .     .@@@@@#.@#                                               @@@@.@@@@@#  
-          `;.                 `;.    @@                                              '@@@  `;.    
-                                      @@                                            @@`@@         
-                                       @@`                                         @@  ;#         
-                                        '@:    ;                                  @@    '         
-                                         .@#  `+                                .@#               
-                                           @@ @@                               '@;                
-                                            @@@@                              @@`                 
-                                            '@@@ #@@@@`               #@@@@` @@                   
-                                           #@@@@@#,,,;@,        .    @#,,,;@@@                    
-                                          ,    @+,,,,,,@        @.  @+,,,,,,@                     
-                                               @,,,,,,,#+       @@. @,,,,,,,#+                    
-                                              ,@,,,,,,,:@@@@@@@@@@@@@,,,,,,,:@                    
-                                              ,@,,,,,,,:@@@@@@@@@@@@@,,,,,,,:@                    
-                                               @,,,,,,,#+       @@. @,,,,,,,#+                    
-                                               @+,,,,,,@        @.  @+,,,,,,@                     
-                                                @#,,,;@,        .    @#,,,;@,                     
-                                                 #@@@@`               #@@@@`                      
-```
+# Video Branching Strategy
 
-# Mobify Branching Strategy
-
-This document represents Mobify's current branching and release strategy. It
+This document represents Video's current branching and release strategy. It
 provides a brief overview of the two release models that we use:
 [release deployment](release-deployment.md) and
 [continuous deployment](continuous-deployment.md).
 
 Each workflow tries to make things as simple as possible while still being
-flexible enough to work for all teams at Mobify.
+flexible enough to work for all teams at Video.
 
 At the end of each document is a list of common scenarios you will encounter
-and how Mobify's branching strategies apply.
+and how Video's branching strategies apply.
 
 ## What is the purpose of this document?
-
-As Mobify continues to grow and expand its operations globally, consistency
-across all teams and partners is a key focus. The more aligned all Mobify
-projects are, the more productive everyone will be.
 
 This repository and its documentation outline:
 * How we develop features
@@ -54,9 +20,6 @@ This repository and its documentation outline:
 * Anything else related to our branching strategy
 
 ### This document is not...
-
-**Written in stone.** Pull requests welcome! We will iterate on this document
-based on feedback.
 
 **The one true way to work on projects.** There are edgecases and this document
 does not intent to answer them all.
@@ -98,12 +61,6 @@ Other than that, choose names that are descriptive and concise. You don't need a
 name that is a novel because most branches should be relatively short-lived (hours to
 days, not weeks).
 
-## Git @ Mobify
-
-Mobify uses git (specifically [Github](github.com)) for all source control. Git is
-a very flexible tool and we have adopted some patterns when using git specifically
-at Mobify. Think of it as the git equivalent of "Javascript - The Good Parts." :)
-
 ### Updating branches
 
 ** Important **
@@ -133,7 +90,7 @@ GitHub recently added [Protected branches](https://github.com/blog/2051-protecte
 - Can't be deleted
 - Can't have changes merged into them until required status checks pass
 
-`master` and `develop` branches should always be protected. These protected branches
+`main` and `develop` branches should always be protected. These protected branches
 should never be directly committed to. They should only be updated through PR merges.
 
 Projects that have continuous integration with a service such as CircleCI should
