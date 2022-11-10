@@ -47,7 +47,7 @@ deployed together.
 ## Branch Naming
 
 Branch naming is left mostly up to the discretion of the person creating the branch
-with a few exceptions. `master` and `develop` are always named exactly that. When a
+with a few exceptions. `main` and `develop` are always named exactly that. When a
 feature/bugfix is related to a JIRA ticket we prefer that the branch name start with
 the ticket number (eg. `hyb-545-add-headerbar`). Hotfix and release branches should
 follow a pattern defined in the project type documents (ie. `release-vX.Y.Z` or
@@ -94,7 +94,7 @@ GitHub recently added [Protected branches](https://github.com/blog/2051-protecte
 should never be directly committed to. They should only be updated through PR merges.
 
 Projects that have continuous integration with a service such as CircleCI should
-have their `master` and `develop` (if applicable) branches protected by a status
+have their `main` and `develop` (if applicable) branches protected by a status
 check requiring CircleCI builds to pass before changes can be merged.
 
 ## Anti-Patterns

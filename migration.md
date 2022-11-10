@@ -13,22 +13,22 @@ instructions [here](continuous-deployment.md).
 
 1. Determine which branch is deployed to production.
     * For illustration purposes, let's say it's `current-prod`
-1. Merge `current-prod` into `master`
+1. Merge `current-prod` into `main`
 
    ```
-   $ git checkout master
+   $ git checkout main
    $ git merge current-prod
    ```
 
-1. Create a `develop` branch off of `master` if none exists
+1. Create a `develop` branch off of `main` if none exists
 
    ```
-   $ git checkout master
+   $ git checkout main
    $ git checkout -b develop
    ```
 
 1. Notify your team branching & release Czar so that he or she can protect the following branches:
-    * `master`
+    * `main`
     * `develop`
 
 ## Protected Branches
@@ -41,4 +41,4 @@ To protect a branch, follow these instructions:
 
 1. Navigate to your Github repository
 1. Click on **Settings** and then on **Branches** in the left-hand navigation
-1. In the **Protected branches** section, configure both `master` and `develop` branches.
+1. In the **Protected branches** section, configure both `main` and `develop` branches.

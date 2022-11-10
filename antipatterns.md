@@ -6,13 +6,13 @@
 This page lists some anti-patterns we want to avoid at all cost. Seriously, don't
 even think of doing anything you see below.
 
-- [Don't develop a feature in `develop` or `master`](#dont-develop-a-feature-in-develop-or-master)
-- [Don't fix a bug in `master`](#dont-fix-a-bug-in-master)
+- [Don't develop a feature in `develop` or `main`](#dont-develop-a-feature-in-develop-or-main)
+- [Don't fix a bug in `main`](#dont-fix-a-bug-in-main)
 - [Don't merge your pull requests without a +1](#dont-merge-your-pull-requests-without-a-1)
 
-## Don't develop a feature in `develop` or `master`
+## Don't develop a feature in `develop` or `main`
 
-**Instead**: Create a feature branch off of `develop` or `master`. When the
+**Instead**: Create a feature branch off of `develop` or `main`. When the
 feature is developed and tested, create a pull request.
 
 **Why?**: All code changes require a code review and verification by our QA team.
@@ -21,9 +21,9 @@ is ready to be reviewed and tested.
 
 * * *
 
-## Don't fix bugs in `master`
+## Don't fix bugs in `main`
 
-**Instead**: Create a hotfix branch off of `master`. Write a test case, fix the bug
+**Instead**: Create a hotfix branch off of `main`. Write a test case, fix the bug
 and create a pull request.
 
 **Why?**: Production bug fixes are super critical and it's especially important

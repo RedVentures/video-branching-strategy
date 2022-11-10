@@ -24,18 +24,18 @@ and how to deal with them from a branching point of view.
 
 | Branch  | Protected?  | Base Branch      | Description    |
 | :-------|:------------|:-----------------|:---------------|
-| `master`| YES         | N/A              | What is live in production (**stable**).<br/>A pull request is required to merge code into `master`. |
-| feature | NO          | `master`         | Cutting-edge features (**unstable**). These branches are used for any maintenance features / active development. |
-| `hotfix-*` | NO       | `master`         | These are bug fixes against production.<br/> |
+| `main`| YES         | N/A              | What is live in production (**stable**).<br/>A pull request is required to merge code into `main`. |
+| feature | NO          | `main`         | Cutting-edge features (**unstable**). These branches are used for any maintenance features / active development. |
+| `hotfix-*` | NO       | `main`         | These are bug fixes against production.<br/> |
 
 ## Develop a new feature
 
 ![Hotfix **use rarely**](images/continuous-new-feature.png)
 
-1. Create a feature branch based off of `master`.
+1. Create a feature branch based off of `main`.
 
    ```
-   $ git checkout master
+   $ git checkout main
    $ git checkout -b MYTEAM-123-new-documentation
    $ git push --set-upstream MYTEAM-123-new-documentation
    ```
@@ -54,14 +54,14 @@ and how to deal with them from a branching point of view.
 
 1. Navigate to the project on [Github](www.github.com) and open a pull request
 with the following branch settings:
-   * Base: `master`
+   * Base: `main`
    * Compare: `MYTEAM-123-new-documentation`
 
 1. When the pull request has been reviewed and ![+1'd](images/plus1.png)
 , merge and close it and then delete the `MYTEAM-123-new-documentation`
 branch. This can all be done from the Github pull-request page.
 
-1. Deploy `master` to a staging environment to verify (_some teams have this
+1. Deploy `main` to a staging environment to verify (_some teams have this
     automated, some prefer a manual deploy with some conventions, either is fine_).
 
 1. If everything is good in staging, promote it to production and you're done.
@@ -72,7 +72,7 @@ If not, roll back production to the previous release and return to Step 1.
 There's nothing special about that. Each developer follows the above
 [Develop a new feature](#develop-a-new-feature) process.
 
-During development, make sure to update from `master` often so that when you
+During development, make sure to update from `main` often so that when you
 get ready to complete your feature you don't have to deal with large code
 conflicts.
 
@@ -87,15 +87,15 @@ follow the standard 'Develop a feature' workflow.*
 *This is very similar to how we [Develop a new feature](#develop-a-new-feature)
 described above.*
 
-1. Make sure your `master` branch is up-to-date
+1. Make sure your `main` branch is up-to-date
 
    ```
-   $ git checkout master
+   $ git checkout main
    $ git fetch
-   $ git merge origin/master
+   $ git merge origin/main
    ```
 
-1. Create a hot fix branch based off of `master`
+1. Create a hot fix branch based off of `main`
 
    ```
    $ git checkout -b hotfix-documentation-broken-links
@@ -116,7 +116,7 @@ described above.*
 
 1. Navigate to the project on [Github](www.github.com) and open a pull request
    with the following branch settings:
-   * Base: `master`
+   * Base: `main`
    * Compare: `hotfix-documentation-broken-links`
 
 1. When the pull request has been reviewed and ![+1'd](images/plus1.png)

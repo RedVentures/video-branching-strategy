@@ -26,12 +26,12 @@ and how to deal with them from a branching point of view.
 
 | Branch        | Protected? | Base Branch | Description    |
 | :-------------|:-----------|:------------|:---------------|
-| `master`      | YES        | N/A         | What is live in production (**stable**).<br/>A pull request is required to merge code into `master`. |
-| `develop`     | YES        | `master`    | The latest state of development (**unstable**). |
+| `main`      | YES        | N/A         | What is live in production (**stable**).<br/>A pull request is required to merge code into `main`. |
+| `develop`     | YES        | `main`    | The latest state of development (**unstable**). |
 | feature       | NO         | `develop`   | Cutting-edge features (**unstable**). These branches are used for any maintenance features / active development. |
 | `release-vX.Y.Z` | NO      | `develop`    | A temporary release branch that follows the [semver](http://semver.org/) versioning. This is what is sent to UAT.<br/>A pull request is required to merge code into any `release-vX.Y.Z` branch. |
 | bugfix        | NO         | `release-vX.Y.Z` | Any fixes against a release branch should be made in a bug-fix branch. The bug-fix branch should be merged into the release branch and also into develop. This is one area where we’re deviating from GitFlow. |
-| `hotfix-*`    | NO         | `master`    | These are bug fixes against production.<br/>This is used because develop might have moved on from the last published state.<br/>Remember to merge this back into develop and any release branches. |
+| `hotfix-*`    | NO         | `main`    | These are bug fixes against production.<br/>This is used because develop might have moved on from the last published state.<br/>Remember to merge this back into develop and any release branches. |
 
 ## Use Cases
 
@@ -79,13 +79,13 @@ There's nothing special about that. Each developer follows the above [Develop a 
 
 ![Create and deploy a release](images/release-release.png)
 
-1. Merge `master` into `develop` to ensure the new release will contain the
+1. Merge `main` into `develop` to ensure the new release will contain the
    latest production code. This reduces the chance of a merge conflict during
    the release.
 
    ```
    $ git checkout develop
-   $ git merge master
+   $ git merge main
    ```
 
 1. Create a new `release-vX.Y.Z` release branch off of `develop`.
@@ -110,19 +110,19 @@ There's nothing special about that. Each developer follows the above [Develop a 
 1. When the code is ready to release, navigate to the project on
    [Github](www.github.com) and open a pull request with the following branch
    settings:
-   * Base: `master`
+   * Base: `main`
    * Compare: `release-vX.Y.Z`
    Paste the Release Checklist into the PR body. Each project should define a release
    checklist. It will vary across projects, but you can refer to the Astro [Release](https://github.com/mobify/astro/blob/develop/RELEASE.md) document
    for an example.
 
-1. At some point in the checklist you will merge the release branch into `master`.
+1. At some point in the checklist you will merge the release branch into `main`.
    You can do this by using the "Merge pull request" button on the release PR.
 
 1. Now you are ready to create the actual release. Navigate to the project page
    on Github and draft a new release with the following settings:
    * Tag version: `vX.Y.Z`
-   * Target: `master`
+   * Target: `main`
    * Release title: `Release vX.Y.Z`
    * Description: Include a high-level list of things changed in this release.
    Click `Publish release`.
@@ -149,9 +149,9 @@ Mike N: That probably means recreating the release branch, unless we have short-
 
 In a release based project old releases can often need some maintenance. Critical bug fixes and strategic feature requests need to be supported on old releases. Old releases often become incompatible with the most recent versions of projects.
 
-In order to support old release versions gitflow has introduced the concept of support branches. Support branches are long living branches created to support major or minor versions of the project. Support branches do not get merged back into `master` or `develop` (this would cause major merge issues which are time consuming and error prone if attempted). Instead commits can be cherry picked from the support branch back into `develop`. 
+In order to support old release versions gitflow has introduced the concept of support branches. Support branches are long living branches created to support major or minor versions of the project. Support branches do not get merged back into `main` or `develop` (this would cause major merge issues which are time consuming and error prone if attempted). Instead commits can be cherry picked from the support branch back into `develop`. 
 
-Support branches can be thought of as the `master` branch for old releases. Support branches for major releases should be named as `support-v<major>.x`. Support branches for minor releases should be named as `support-v<major>.<minor>.x`.
+Support branches can be thought of as the `main` branch for old releases. Support branches for major releases should be named as `support-v<major>.x`. Support branches for minor releases should be named as `support-v<major>.<minor>.x`.
 
 Here is an example of creating a support branch for v1.0 assuming v2.0 of the project has already been released.
 
@@ -176,7 +176,7 @@ Here is an example of creating a support branch for v1.0 assuming v2.0 of the pr
 
 1. Create release PR to merge `release-v1.0.1` into `support-v1.x`.
 
-1. Follow the standard release process treating `support-v1.x` as the `master` branch. As per the standard release process `release-v1.0.1` will get deleted and `support-v1.x` will remain in repo indefinitely.
+1. Follow the standard release process treating `support-v1.x` as the `main` branch. As per the standard release process `release-v1.0.1` will get deleted and `support-v1.x` will remain in repo indefinitely.
 
 1. Mark `support-v1.x` as a protected branch in github so that it does not get accidentally deleted.
 
@@ -186,16 +186,16 @@ Here is an example of creating a support branch for v1.0 assuming v2.0 of the pr
 ### Production hot fix
 
 A production hotfix is very similar to a full-scale release except that you do
-your work in a branch taken directly off of `master`. Hotfixes are useful in cases
+your work in a branch taken directly off of `main`. Hotfixes are useful in cases
 where you want to patch a bug in a released version, but `develop` has unreleased
 code in it already.
 
 **TBD: Insert diagram**
 
-1. Create a hot fix branch based off of `master`.
+1. Create a hot fix branch based off of `main`.
 
    ```
-   $ git checkout master
+   $ git checkout main
    $ git checkout -b hotfix-documentation-broken-links
    $ git push --set-upstream origin hotfix-documentation-broken-links
    ```
@@ -211,19 +211,19 @@ code in it already.
 
 1. Navigate to the project on [Github](www.github.com) and open a pull request
    with the following branch settings:
-   * Base: `master`
+   * Base: `main`
    * Compare: `hotfix-documentation-broken-links`
    Paste your release checklist into the PR and work through the PR to get the
    hotfix into production.
 
-1. At some point in the checklist you will merge the hotfix branch into `master`.
+1. At some point in the checklist you will merge the hotfix branch into `main`.
   You can do this by using the "Merge pull request" button on the release PR.
 
-1. Now that the hotfix code is in `master` you are ready to create the actual
+1. Now that the hotfix code is in `main` you are ready to create the actual
    release. Navigate to the project page on Github and draft a new release with
    the following settings:
    * Tag version: `vX.Y.Z`
-   * Target: `master`
+   * Target: `main`
    * Release title: `Release vX.Y.Z (hotfix)`
    * Description: Include a high-level list of things changed in this release.
 
@@ -269,7 +269,7 @@ The process for tagging and merging is a bit different when deploying a bundle, 
 	$ grunt push -m "$(message Mobile X.Y.Z)"
 	```
 
-1. When creating a pull request to merge the release branch into `master` ensure that the standard workflow for _creating a release_ is followed with these specific changes:
+1. When creating a pull request to merge the release branch into `main` ensure that the standard workflow for _creating a release_ is followed with these specific changes:
    * Name/Summary: `DEPLOYMENT MERGE: release-v.X.Y.Z, bundle <bundle number that was sent to customer>`
    * Description:
 
@@ -290,7 +290,7 @@ The process for tagging and merging is a bit different when deploying a bundle, 
 	- [ ] Clean Up Repo
    ```
 
-1. Once the customer has approved the bundle. The bundle is published to production and post launch tests occur. Once all tests have passed, the pull request is merged into `master`.
+1. Once the customer has approved the bundle. The bundle is published to production and post launch tests occur. Once all tests have passed, the pull request is merged into `main`.
 
 1. Finish the _Github release workflow_ as described above and ensure that these specific changes are added to the _release notes_ draft of the _Github release_:
    * Release title: `Release vX.Y.Z - Bundle <number>`
