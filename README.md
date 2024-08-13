@@ -1,3 +1,5 @@
+# DEPRECATED, see https://github.com/cbsi-cmg/gcp-brightcove-video/tree/main
+
 # Video Branching Strategy
 
 This document represents Video's current branching and release strategy. It
